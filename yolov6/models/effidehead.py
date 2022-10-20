@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import math
 from yolov6.layers.common import *
-from yolov6.assigners.anchor_generator import generate_anchors
+import yolov6.assigners.anchor_generator as anchor_generator
 from yolov6.utils.general import dist2bbox
 
 
@@ -97,7 +97,7 @@ class Detect(nn.Module):
         else:
             cls_score_list = []
             reg_dist_list = []
-            anchor_points, stride_tensor = generate_anchors(
+            anchor_points, stride_tensor = anchor_generator.generate_anchors(
                 x, self.stride, self.grid_cell_size, self.grid_cell_offset, device=x[0].device, is_eval=True)
 
             for i in range(self.nl):
