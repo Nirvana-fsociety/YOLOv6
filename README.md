@@ -71,7 +71,7 @@ YOLOv6-N hits 35.9% AP on COCO dataset with 1234 FPS on T4. YOLOv6-S strikes 43.
 
 
 ```shell
-git clone https://github.com/meituan/YOLOv6
+git clone https://github.com/Nirvana-fsociety/YOLOv6.git
 cd YOLOv6
 pip install -r requirements.txt
 ```
