@@ -122,16 +122,17 @@ class Detect(nn.Module):
             cls_score_list = torch.cat(cls_score_list, axis=-1).permute(0, 2, 1)
             reg_dist_list = torch.cat(reg_dist_list, axis=-1).permute(0, 2, 1)
 
+            return cls_score_list, reg_dist_list, anchor_points, stride_tensor
 
-            pred_bboxes = dist2bbox(reg_dist_list, anchor_points, box_format='xywh')
-            pred_bboxes *= stride_tensor
-            return torch.cat(
-                [
-                    pred_bboxes,
-                    torch.ones((b, pred_bboxes.shape[1], 1), device=pred_bboxes.device, dtype=pred_bboxes.dtype),
-                    cls_score_list
-                ],
-                axis=-1)
+            # pred_bboxes = dist2bbox(reg_dist_list, anchor_points, box_format='xywh')
+            # pred_bboxes *= stride_tensor
+            # return torch.cat(
+            #     [
+            #         pred_bboxes,
+            #         torch.ones((b, pred_bboxes.shape[1], 1), device=pred_bboxes.device, dtype=pred_bboxes.dtype),
+            #         cls_score_list
+            #     ],
+            #     axis=-1)
 
 
 def build_effidehead_layer(channels_list, num_anchors, num_classes, reg_max=16):
