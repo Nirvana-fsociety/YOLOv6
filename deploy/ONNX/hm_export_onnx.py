@@ -80,7 +80,7 @@ if __name__ == '__main__':
                               training=torch.onnx.TrainingMode.EVAL,
                               do_constant_folding=True,
                               input_names=['images'],
-                              output_names=['cls_score_list', 'reg_dist_list', 'anchor_points', 'stride_tensor'],
+                              output_names=['cls_score_list', 'reg_dist_list', 'feats'],
                               dynamic_axes=dynamic_axes)
             f.seek(0)
             # Checks

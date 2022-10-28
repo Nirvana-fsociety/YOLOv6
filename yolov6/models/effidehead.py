@@ -97,8 +97,9 @@ class Detect(nn.Module):
         else:
             cls_score_list = []
             reg_dist_list = []
-            anchor_points, stride_tensor = anchor_generator.generate_anchors(
-                x, self.stride, self.grid_cell_size, self.grid_cell_offset, device=x[0].device, is_eval=True)
+            feats = x
+            # anchor_points, stride_tensor = anchor_generator.generate_anchors(
+            #     x, self.stride, self.grid_cell_size, self.grid_cell_offset, device=x[0].device, is_eval=True)
 
             for i in range(self.nl):
                 b, _, h, w = x[i].shape
@@ -122,7 +123,7 @@ class Detect(nn.Module):
             cls_score_list = torch.cat(cls_score_list, axis=-1).permute(0, 2, 1)
             reg_dist_list = torch.cat(reg_dist_list, axis=-1).permute(0, 2, 1)
 
-            return cls_score_list, reg_dist_list, anchor_points, stride_tensor
+            return cls_score_list, reg_dist_list, feats
 
             # pred_bboxes = dist2bbox(reg_dist_list, anchor_points, box_format='xywh')
             # pred_bboxes *= stride_tensor
