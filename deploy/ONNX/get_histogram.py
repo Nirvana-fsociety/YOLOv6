@@ -88,22 +88,28 @@ if __name__ == '__main__':
             kernel3x3_cpu = torch.flatten(kernel3x3).cpu().detach().numpy()
             kernel3x3_plt.hist(kernel3x3_cpu, bins=1024, range=(kernel3x3_cpu.min(), kernel3x3_cpu.max()))
             kernel3x3_plt.set_title('kernel3x3-{}'.format(count))
+            plt.yscale('log')  # 设置纵坐标为10的n次方，以直观显示0-10之间的分布，兼顾高峰。
+            
             bias3x3_plt = plt.subplot(2, 4, 5)
             # bias3x3_plt.margins(margin_float)
             bias3x3_cpu = torch.flatten(bias3x3).cpu().detach().numpy()
             bias3x3_plt.hist(bias3x3_cpu, bins=1024, range=(bias3x3_cpu.min(), bias3x3_cpu.max()))
             bias3x3_plt.set_title('bias3x3-{}'.format(count))
+            plt.yscale('log')  # 设置纵坐标为10的n次方，以直观显示0-10之间的分布，兼顾高峰。
             
             kernel1x1_plt = plt.subplot(2, 4, 2)
             # kernel1x1_plt.margins(margin_float)
             kernel1x1_cpu = torch.flatten(kernel1x1).cpu().detach().numpy()
             kernel1x1_plt.hist(kernel1x1_cpu, bins=1024, range=(kernel1x1_cpu.min(), kernel1x1_cpu.max()))
             kernel1x1_plt.set_title('kernel1x1-{}'.format(count))
+            plt.yscale('log')  # 设置纵坐标为10的n次方，以直观显示0-10之间的分布，兼顾高峰。
+            
             bias1x1_plt = plt.subplot(2, 4, 6)
             # bias1x1_plt.margins(margin_float)
             bias1x1_cpu = torch.flatten(bias1x1).cpu().detach().numpy()
             bias1x1_plt.hist(bias1x1_cpu, bins=1024, range=(bias1x1_cpu.min(), bias1x1_cpu.max()))
             bias1x1_plt.set_title('bias1x1-{}'.format(count))
+            plt.yscale('log')  # 设置纵坐标为10的n次方，以直观显示0-10之间的分布，兼顾高峰。
             
             kernelid_plt = plt.subplot(2, 4, 3)
             # kernelid_plt.margins(margin_float)
@@ -113,7 +119,8 @@ if __name__ == '__main__':
             else:
                 kernelid_plt.hist(kernelid, bins=1024, range=(kernelid * -3, kernelid * 3))
             kernelid_plt.set_title('kernelid-{}'.format(count))
-            kernelid_plt.set_title('kernelid-{}'.format(count))
+            plt.yscale('log')  # 设置纵坐标为10的n次方，以直观显示0-10之间的分布，兼顾高峰。
+
             biasid_plt = plt.subplot(2, 4, 7)
             # biasid_plt.margins(margin_float)
             if isinstance(biasid, Tensor):
@@ -122,6 +129,7 @@ if __name__ == '__main__':
             else:
                 biasid_plt.hist(biasid, bins=1024, range=(biasid * -3, biasid * 3))
             biasid_plt.set_title('biasid-{}'.format(count))
+            plt.yscale('log')  # 设置纵坐标为10的n次方，以直观显示0-10之间的分布，兼顾高峰。
 
             # 这里插入model三分支合并后的权重分布可视化函数
             
@@ -130,11 +138,15 @@ if __name__ == '__main__':
             kernel_cpu = torch.flatten(kernel).cpu().detach().numpy()
             kernel_plt.hist(kernel_cpu, bins=1024, range=(kernel_cpu.min(), kernel_cpu.max()))
             kernel_plt.set_title('kernel-{}'.format(count))
+            plt.yscale('log')  # 设置纵坐标为10的n次方，以直观显示0-10之间的分布，兼顾高峰。
+            
             bias_plt = plt.subplot(2, 4, 8)
             # bias_plt.margins(margin_float)
             bias_cpu = torch.flatten(bias).cpu().detach().numpy()
             bias_plt.hist(bias_cpu, bins=1024, range=(bias_cpu.min(), bias_cpu.max()))
             bias_plt.set_title('bias-{}'.format(count))
+            plt.yscale('log')  # 设置纵坐标为10的n次方，以直观显示0-10之间的分布，兼顾高峰。
+            
             if not os.path.exists("./log"):
                 os.mkdir("log")
                 
